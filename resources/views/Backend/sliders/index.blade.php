@@ -1,6 +1,6 @@
-@extends('Layouts.admin')
+@extends('Layouts.app')
 
-@section('content')
+@section('admin')
 <div class="p-6">
     <div class="flex items-center justify-between mb-6">
         <div>
