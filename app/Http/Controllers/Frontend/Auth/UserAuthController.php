@@ -34,15 +34,21 @@ class UserAuthController extends Controller
         $input = $request->input('email_or_phone');
         $isEmail = filter_var($input, FILTER_VALIDATE_EMAIL);
 
-        $request->validate([
+        $rules = [
             'name' => 'required|string|max:100',
-            'email_or_phone' => [
-                'required',
-                'string',
-                $isEmail ? 'email|unique:users,email' : 'max:20|unique:users,phone'
-            ],
+            'email_or_phone' => ['required', 'string'],
             'password' => 'required|string|min:6|confirmed',
-        ], [
+        ];
+
+        if ($isEmail) {
+            $rules['email_or_phone'][] = 'email';
+            $rules['email_or_phone'][] = 'unique:users,email';
+        } else {
+            $rules['email_or_phone'][] = 'max:20';
+            $rules['email_or_phone'][] = 'unique:users,phone';
+        }
+
+        $request->validate($rules, [
             'email_or_phone.unique' => $isEmail ? 'This email is already registered.' : 'This phone number is already registered.'
         ]);
 
