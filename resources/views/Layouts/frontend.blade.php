@@ -56,7 +56,7 @@
     </div>
 
     <!-- Main Header -->
-    <header x-data="{ mobileMenu: false }" class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <header x-data="{ mobileMenu: false }" class="bg-white sticky top-0 z-[100] shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4 md:gap-8">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="shrink-0">
