@@ -4,7 +4,7 @@
     <div class="min-h-screen flex items-center justify-center bg-neutral-secondary-soft px-4">
 
         <div class="w-full max-w-sm bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs">
-            <form action="{{ route('login.store') }}" method="POST">
+            <form action="{{ route('admin.login.store') }}" method="POST">
                 @csrf
                 <h5 class="text-xl font-semibold text-heading mb-6">Sign in to our platform</h5>
                 <div class="mb-4">

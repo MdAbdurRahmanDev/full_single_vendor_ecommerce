@@ -29,7 +29,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors(['email' => 'The provided credentials do not match our records.']);

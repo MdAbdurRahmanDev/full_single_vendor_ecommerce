@@ -38,15 +38,18 @@
                 </span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="#" class="hover:text-brand transition">Help</a>
-                <a href="#" class="hover:text-brand transition">About Us</a>
-                <a href="#" class="hover:text-brand transition">Track Order</a>
+                <a href="{{ route('help') }}" class="hover:text-brand transition">Help</a>
+                <a href="{{ route('contact') }}" class="hover:text-brand transition">Contact Us</a>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="font-semibold text-brand">My Account</a>
+                    <a href="#" class="font-semibold text-brand">{{ auth()->user()->name }}</a>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="hover:text-brand transition">Logout</button>
+                    </form>
                 @else
                     <a href="{{ route('login') }}" class="hover:text-brand transition">Sign In</a>
                     <span class="text-gray-300">/</span>
-                    <a href="#" class="hover:text-brand transition">Register</a>
+                    <a href="{{ route('register') }}" class="hover:text-brand transition">Register</a>
                 @endauth
             </div>
         </div>
