@@ -42,8 +42,33 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        $products = $query->latest()->paginate(12)->withQueryString();
-        $categories = Categorie::where('status', 'active')->get();
+        // Sorting
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'price_low':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price_high':
+                    $query->orderBy('price', 'desc');
+                    break;
+                default:
+                    $query->latest();
+                    break;
+            }
+        } else {
+            $query->latest();
+        }
+
+        $products = $query->paginate(12)->withQueryString();
+        
+        $all_products_count = Product::where('status', 1)->count();
+        
+        // Dynamic Category Counts
+        $categories = Categorie::where('status', 'active')
+            ->withCount(['products' => function($q) {
+                $q->where('status', 1);
+            }])
+            ->get();
         
         return view('Frontend.product.index', compact('products', 'categories'));
     }
