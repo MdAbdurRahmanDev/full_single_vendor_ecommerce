@@ -14,4 +14,8 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/order/success', [OrderController::class, 'success'])->name('payment.success');
 
+// Static Pages
+Route::get('/help', [HomeController::class, 'help'])->name('help');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
 include 'admin.php';

@@ -25,4 +25,20 @@ class HomeController extends Controller
 
         return view('Frontend.home', compact('flash_sale_products', 'latest_products', 'categories'));
     }
+
+    /**
+     * Show the Help/Support center.
+     */
+    public function help()
+    {
+        return view('Frontend.pages.help');
+    }
+
+    /**
+     * Show the Contact page.
+     */
+    public function contact()
+    {
+        return view('Frontend.pages.contact');
+    }
 }
