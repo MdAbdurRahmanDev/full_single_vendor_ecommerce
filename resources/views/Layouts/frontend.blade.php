@@ -56,7 +56,7 @@
     </div>
 
     <!-- Main Header -->
-    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <header x-data="{ mobileMenu: false }" class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4 md:gap-8">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="shrink-0">
@@ -99,17 +99,17 @@
 
             <!-- Icons -->
             <div class="flex items-center space-x-5 text-gray-700">
-                <a href="{{ route('checkout') }}" class="relative p-1 hover:text-brand transition group flex items-center space-x-2">
+                <a href="{{ route('cart.index') }}" class="relative p-1 hover:text-brand transition group flex items-center space-x-2">
                     <div class="relative">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                        <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                        <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{{ count((array) session('cart')) }}</span>
                     </div>
                 </a>
                 <a href="#" class="p-1 hover:text-brand transition hidden md:block">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
                 </a>
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden p-1 hover:text-brand transition">
+                <button @click="mobileMenu = true" class="md:hidden p-1 hover:text-brand transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
@@ -125,6 +125,93 @@
                 </button>
             </div>
         </form>
+
+        <!-- Mobile Offcanvas Menu (Alpine.js) -->
+        <div x-show="mobileMenu" 
+             style="display: none;"
+             class="fixed inset-0 z-[105] md:hidden" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" @click="mobileMenu = false"></div>
+            
+            <!-- Menu Content -->
+            <div class="absolute right-0 top-0 bottom-0 w-80 bg-white shadow-2xl flex flex-col"
+                 x-show="mobileMenu"
+                 x-transition:enter="transition ease-out duration-300 transform"
+                 x-transition:enter-start="translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="translate-x-full">
+                
+                <div class="p-8 border-b border-gray-50 flex items-center justify-between bg-brand text-white">
+                    <span class="text-xl font-black lowercase tracking-tighter">Explore menu.</span>
+                    <button @click="mobileMenu = false" class="p-2 hover:bg-white/10 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-8 pb-32 space-y-10">
+                    <!-- Main Nav -->
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Primary Navigation</p>
+                        <nav class="flex flex-col space-y-2">
+                            <a href="{{ route('home') }}" class="px-5 py-4 bg-gray-50 text-gray-900 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Home</span>
+                                <svg class="w-4 h-4 text-brand transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </a>
+                            <a href="{{ route('shop.index') }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Shop Gallery</span>
+                                <svg class="w-4 h-4 text-gray-200 transform group-hover:translate-x-1 group-hover:text-brand transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Category List -->
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Boutique Categories</p>
+                        <nav class="flex flex-col space-y-1">
+                            @foreach($global_categories ?? [] as $category)
+                            <a href="{{ route('shop.index', ['category' => $category->slug]) }}" class="px-5 py-3 hover:text-brand text-gray-900 text-sm font-bold transition flex items-center space-x-3">
+                                <div class="w-1.5 h-1.5 bg-brand/20 rounded-full group-hover:bg-brand"></div>
+                                <span>{{ $category->name }}</span>
+                            </a>
+                            @endforeach
+                        </nav>
+                    </div>
+
+                    <!-- User Account -->
+                    @auth
+                    <div class="pt-10 border-t border-gray-50 space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-brand text-white rounded-2xl flex items-center justify-center font-black">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                            </div>
+                            <div>
+                                <p class="text-xs font-black text-gray-900 tracking-tight">{{ auth()->user()->name }}</p>
+                                <a href="{{ route('dashboard') }}" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-brand">Manage Account</a>
+                            </div>
+                        </div>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full py-4 bg-gray-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl">Secure Logout</button>
+                        </form>
+                    </div>
+                    @else
+                    <div class="pt-10 border-t border-gray-50 grid grid-cols-2 gap-4">
+                        <a href="{{ route('login') }}" class="py-4 bg-gray-900 text-white text-center rounded-2xl text-[9px] font-black uppercase tracking-widest">Sign In</a>
+                        <a href="{{ route('register') }}" class="py-4 bg-brand text-white text-center rounded-2xl text-[9px] font-black uppercase tracking-widest">Join Us</a>
+                    </div>
+                    @endauth
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -214,9 +301,9 @@
         </a>
 
         <!-- Cart Link (Floating Highlight) -->
-        <a href="{{ route('checkout') }}" class="relative -mt-8 bg-brand w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg shadow-brand/30 border-4 border-white transition-transform active:scale-90">
+        <a href="{{ route('cart.index') }}" class="relative -mt-8 bg-brand w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg shadow-brand/30 border-4 border-white transition-transform active:scale-90">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            <span class="absolute -top-1 -right-1 bg-gray-900 border-2 border-white text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center">2</span>
+            <span class="absolute -top-1 -right-1 bg-gray-900 border-2 border-white text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center">{{ count((array) session('cart')) }}</span>
         </a>
 
         <!-- Wishlist Link -->
@@ -231,6 +318,30 @@
             <span class="text-[9px] font-black uppercase tracking-widest">Account</span>
         </a>
     </div>
+
+    <!-- Notifications Hub (Orange Toast) -->
+    @if(session('success'))
+    <div x-data="{ show: true }" 
+         x-init="setTimeout(() => show = false, 4000)"
+         x-show="show"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="translate-y-20 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="translate-y-0 opacity-100"
+         x-transition:leave-end="translate-y-20 opacity-0"
+         class="fixed bottom-24 right-4 md:right-8 z-[200]">
+        <div class="bg-gray-900 border-l-4 border-brand text-white px-8 py-5 rounded-[25px] shadow-2xl flex items-center space-x-6">
+            <div class="w-10 h-10 bg-brand rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-brand mb-1">Success Journey</p>
+                <p class="text-xs font-bold text-white lowercase tracking-tight">{{ session('success') }}</p>
+            </div>
+        </div>
+    </div>
+    @endif
 
 </body>
 

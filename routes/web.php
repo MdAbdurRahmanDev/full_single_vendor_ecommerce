@@ -7,13 +7,18 @@ use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\SupportController;
 use App\Http\Controllers\Frontend\Auth\UserAuthController;
+use App\Http\Controllers\Frontend\CartController;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::post('/add-to-cart/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/remove-from-cart', [CartController::class, 'remove'])->name('cart.remove');
+Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.update');
 Route::get('/order/success', [OrderController::class, 'success'])->name('payment.success');
 
 // Static Pages
