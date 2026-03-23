@@ -14,6 +14,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        // Reset page if new filter applied
+        if ($request->anyFilled(['search', 'category', 'max_price', 'sort']) && !$request->has('page')) {
+            // Keep it at page 1
+        }
+
         $query = Product::where('status', 1);
 
         // Search by name or category
@@ -70,7 +75,7 @@ class ProductController extends Controller
             }])
             ->get();
         
-        return view('Frontend.product.index', compact('products', 'categories'));
+        return view('Frontend.product.index', compact('products', 'categories', 'all_products_count'));
     }
 
     /**

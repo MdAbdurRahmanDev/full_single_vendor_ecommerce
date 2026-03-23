@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div x-data="{ filter_open: false, minPrice: {{ request('min_price', 0) }}, maxPrice: {{ request('max_price', 1000) }} }" class="container mx-auto px-4 py-8 md:py-12">
+    <div x-data="{ filter_open: false }" class="container mx-auto px-4 py-8 md:py-12">
         
         <!-- Main Form Wrapper -->
         <form action="{{ route('shop.index') }}" method="GET" id="shop-filter-form">
@@ -42,7 +42,7 @@
                             <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-3">Categories</h3>
                             <div class="space-y-4 pr-4">
                                 <!-- Reset Category -->
-                                <a href="{{ request()->fullUrlWithQuery(['category' => null]) }}" class="flex items-center justify-between group decoration-0">
+                                <a href="{{ route('shop.index') }}" class="flex items-center justify-between group decoration-0">
                                     <span class="text-xs font-black {{ !request('category') ? 'text-brand' : 'text-gray-400' }} group-hover:text-brand transition uppercase tracking-widest leading-loose">All Products</span>
                                     <div class="flex items-center space-x-2">
                                         <div class="w-1 h-1 {{ !request('category') ? 'bg-brand' : 'bg-gray-50' }} rounded-full group-hover:bg-brand transition"></div>
@@ -52,7 +52,7 @@
 
                                 @foreach ($categories as $category)
                                     @php $isActive = request('category') == $category->slug; @endphp
-                                    <a href="{{ request()->fullUrlWithQuery(['category' => $category->slug]) }}" class="flex items-center justify-between group decoration-0">
+                                    <a href="{{ route('shop.index', ['category' => $category->slug]) }}" class="flex items-center justify-between group decoration-0">
                                         <span class="text-xs font-black {{ $isActive ? 'text-brand' : 'text-gray-400' }} group-hover:text-brand transition uppercase tracking-widest leading-loose">{{ $category->name }}</span>
                                         <div class="flex items-center space-x-2">
                                             <div class="w-1 h-1 {{ $isActive ? 'bg-brand' : 'bg-gray-100' }} rounded-full group-hover:bg-brand transition"></div>
@@ -60,32 +60,6 @@
                                         </div>
                                     </a>
                                 @endforeach
-                            </div>
-                        </div>
-
-                        <!-- Price Range Area -->
-                        <div class="space-y-6 lg:border-t lg:border-gray-50 lg:pt-10">
-                            <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-3">Price Range</h3>
-                            <div class="space-y-5">
-                                <div class="relative pt-1">
-                                    <input type="range" name="max_price" x-model="maxPrice"
-                                        class="w-full h-1 bg-gray-100 rounded-full appearance-none accent-brand cursor-pointer"
-                                        min="0" max="2000" step="10">
-                                    <input type="hidden" name="min_price" value="0">
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">Min</span>
-                                        <span class="text-[10px] font-black text-gray-900 tracking-tighter">$0.00</span>
-                                    </div>
-                                    <div class="flex flex-col text-right">
-                                        <span class="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">Max</span>
-                                        <span class="text-[10px] font-black text-brand tracking-tighter" x-text="'$' + maxPrice + '.00'"></span>
-                                    </div>
-                                </div>
-                                <button type="submit" class="w-full py-4 bg-gray-900 text-white rounded-2xl text-[9px] font-black uppercase tracking-widest hover:bg-brand transition-all shadow-xl shadow-gray-100 active:scale-95">
-                                    Apply Filter
-                                </button>
                             </div>
                         </div>
 
