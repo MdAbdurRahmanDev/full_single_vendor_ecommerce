@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -28,6 +29,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [UserAuthController::class, 'register'])->name('register.post');
 });
 Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     include 'admin.php';
