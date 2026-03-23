@@ -169,6 +169,31 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
                     </a>
                 <li>
+                    <a href="{{ route('faq.index') }}"
+                        class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5h6M9 8h6M9 11h6M5 19h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">FAQ Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.contacts.index') }}"
+                        class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="M11 16v-5h4m-1 1H9l3 3m-3-6h6m-6 3h6m1-5h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-11a2 2 0 0 1 2-2h2" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Contact Inquiries</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('settings.index') }}"
                         class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand"

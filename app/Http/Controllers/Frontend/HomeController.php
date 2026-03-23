@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,7 +32,8 @@ class HomeController extends Controller
      */
     public function help()
     {
-        return view('Frontend.pages.help');
+        $faqs = Faq::where('status', true)->orderBy('order_num')->get();
+        return view('Frontend.pages.help', compact('faqs'));
     }
 
     /**

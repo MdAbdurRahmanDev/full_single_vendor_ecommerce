@@ -27,6 +27,15 @@ class SettingSeeder extends Seeder
             ['key' => 'contact_email', 'value' => 'support@gmail.com'],
             ['key' => 'phone', 'value' => '01700000000'],
             ['key' => 'address', 'value' => 'Dhaka, Bangladesh'],
+            ['key' => 'contact_hours', 'value' => 'Mon - Sat: 9 AM - 8 PM'],
+
+            // Help Page Content
+            ['key' => 'help_title', 'value' => 'Customer Support Center'],
+            ['key' => 'help_sub_title', 'value' => 'We’re here to help you solve your problem as quickly as possible.'],
+            ['key' => 'faq_1_title', 'value' => 'How can I track my order?'],
+            ['key' => 'faq_1_content', 'value' => 'You can track your order status by clicking on the Order History tab in your account dashboard.'],
+            ['key' => 'faq_2_title', 'value' => 'Do you deliver on Fridays?'],
+            ['key' => 'faq_2_content', 'value' => 'Currently, our logistics partners do not provide full delivery service on Fridays, but you can choose special delivery if needed.'],
 
             // Social Settings
             ['key' => 'facebook_url', 'value' => 'https://facebook.com/profile'],

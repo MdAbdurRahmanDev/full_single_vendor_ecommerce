@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\FaqController;
+use App\Http\Controllers\Backend\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -23,4 +25,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('products', ProductController::class);
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingController::class, 'updateSettings'])->name('settings.update');
+
+    // FAQ Management
+    Route::resource('faq', FaqController::class);
+    
+    // Contact Inquiries
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{contact}/read', [ContactController::class, 'read'])->name('admin.contacts.read');
+    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
 });
