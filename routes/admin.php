@@ -16,10 +16,11 @@ Route::middleware('guest:admin')->group(function () {
 });
 
 Route::middleware('auth:admin')->group(function () {
+    Route::post('/logout', [LoginController::class, 'adminLogout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [AuthSettingController::class, 'adminProfile'])->name('admin.profile');
-    Route::post('/profile/update', [AuthSettingController::class, 'adminProfileUpdate'])->name('admin.profile.update');
-    Route::post('/password/update', [AuthSettingController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+    Route::get('/profile', [AuthSettingController::class, 'adminProfile'])->name('profile');
+    Route::post('/profile/update', [AuthSettingController::class, 'adminProfileUpdate'])->name('profile.update');
+    Route::post('/password/update', [AuthSettingController::class, 'adminPasswordUpdate'])->name('password.update');
 
     Route::resource('categories', CategoriesController::class);
     Route::resource('products', ProductController::class);
@@ -30,7 +31,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('faq', FaqController::class);
     
     // Contact Inquiries
-    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
-    Route::get('/contacts/{contact}/read', [ContactController::class, 'read'])->name('admin.contacts.read');
-    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/{contact}/read', [ContactController::class, 'read'])->name('contacts.read');
+    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 });

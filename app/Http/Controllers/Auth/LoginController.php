@@ -34,4 +34,16 @@ class LoginController extends Controller
 
         return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
+
+    /**
+     * Admin Logout
+     */
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
+    }
 }
