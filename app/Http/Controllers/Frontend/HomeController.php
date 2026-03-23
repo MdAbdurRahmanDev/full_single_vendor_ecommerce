@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\Slider;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class HomeController extends Controller
         // All active categories
         $categories = Categorie::where('status', 'active')->get();
 
-        return view('Frontend.home', compact('flash_sale_products', 'latest_products', 'categories'));
+        $sliders = Slider::where('status', true)->orderBy('order_num')->get();
+
+        return view('Frontend.home', compact('flash_sale_products', 'latest_products', 'categories', 'sliders'));
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\SliderController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -34,4 +35,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/contacts/{contact}/read', [ContactController::class, 'read'])->name('contacts.read');
     Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+
+    // Slider Management
+    Route::resource('sliders', SliderController::class);
 });
