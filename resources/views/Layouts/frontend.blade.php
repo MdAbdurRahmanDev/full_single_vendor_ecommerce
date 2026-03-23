@@ -56,13 +56,20 @@
     <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4 md:gap-8">
             <!-- Logo -->
-            <a href="/" class="shrink-0">
+            <a href="{{ route('home') }}" class="shrink-0">
                 @if(isset($global_settings['logo']))
                     <img src="{{ asset('uploads/settings/' . $global_settings['logo']) }}" alt="Logo" class="h-8 md:h-10">
                 @else
                     <span class="text-2xl font-bold text-gray-900 tracking-tight">{{ $global_settings['app_name'] ?? 'BeliBeli' }}</span>
                 @endif
             </a>
+
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center space-x-8 text-sm font-bold text-gray-700">
+                <a href="{{ route('home') }}" class="hover:text-brand transition {{ request()->routeIs('home') ? 'text-brand underline decoration-2 underline-offset-8' : '' }}">Home</a>
+                <a href="{{ route('shop.index') }}" class="hover:text-brand transition {{ request()->is('shop*') ? 'text-brand underline decoration-2 underline-offset-8' : '' }}">Shop</a>
+                <a href="#" class="hover:text-brand transition">New Arrival</a>
+            </div>
 
             <!-- Search Bar (Desktop) -->
             <div class="hidden md:flex flex-1 max-w-2xl relative items-center">
@@ -87,9 +94,11 @@
 
             <!-- Icons -->
             <div class="flex items-center space-x-5 text-gray-700">
-                <a href="#" class="relative p-1 hover:text-brand transition group">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                    <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                <a href="{{ route('checkout') }}" class="relative p-1 hover:text-brand transition group flex items-center space-x-2">
+                    <div class="relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </div>
                 </a>
                 <a href="#" class="p-1 hover:text-brand transition hidden md:block">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>

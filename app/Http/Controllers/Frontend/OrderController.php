@@ -4,62 +4,39 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the checkout page.
      */
-    public function index()
+    public function checkout()
     {
-        //
+        // For simulation, we assume some items in "cart".
+        // In real app, this would come from Session/Database.
+        $cart_items = Product::where('status', 1)->take(2)->get();
+        $subtotal = $cart_items->sum('price');
+        $shipping = 10.00;
+        $total = $subtotal + $shipping;
+
+        return view('Frontend.checkout.order', compact('cart_items', 'subtotal', 'shipping', 'total'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Process order (Placeholder).
      */
     public function store(Request $request)
     {
-        //
+        // Logic to save order...
+        return redirect()->route('payment.success')->with('success', 'Order placed successfully.');
     }
 
     /**
-     * Display the specified resource.
+     * Success page.
      */
-    public function show(string $id)
+    public function success()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('Frontend.checkout.payment_success');
     }
 }
