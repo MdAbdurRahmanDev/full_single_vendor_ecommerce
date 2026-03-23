@@ -39,4 +39,22 @@ class DashboardController extends Controller
             'wallet_balance'
         ));
     }
+
+    /**
+     * Show customer orders
+     */
+    public function orders()
+    {
+        $orders = Orders::where('user_id', Auth::id())->latest()->get();
+        return view('Frontend.orders', compact('orders'));
+    }
+
+    /**
+     * Show customer settings/profile
+     */
+    public function settings()
+    {
+        $user = Auth::user();
+        return view('Frontend.settings', compact('user'));
+    }
 }

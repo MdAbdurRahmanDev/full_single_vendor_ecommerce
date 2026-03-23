@@ -32,6 +32,8 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout')->m
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/my-orders', [DashboardController::class, 'orders'])->name('orders.index');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
