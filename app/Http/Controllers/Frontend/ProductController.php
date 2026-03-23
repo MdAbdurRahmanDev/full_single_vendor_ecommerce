@@ -12,10 +12,39 @@ class ProductController extends Controller
     /**
      * Display a listing of the products (Shop Page).
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::where('status', 1)->latest()->paginate(12);
+        $query = Product::where('status', 1);
+
+        // Search by name or category
+        if ($request->filled('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('name', 'like', "%{$searchTerm}%")
+                  ->orWhereHas('category', function($catQuery) use ($searchTerm) {
+                      $catQuery->where('name', 'like', "%{$searchTerm}%");
+                  });
+            });
+        }
+
+        // Filter by category slug if provided
+        if ($request->filled('category')) {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        // Price Filtering
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        $products = $query->latest()->paginate(12)->withQueryString();
         $categories = Categorie::where('status', 'active')->get();
+        
         return view('Frontend.product.index', compact('products', 'categories'));
     }
 
@@ -24,7 +53,7 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->where('status', 1)->firstOrFail();
+        $product = Product::with('category')->where('slug', $slug)->where('status', 1)->firstOrFail();
         $related_products = Product::where('category_id', $product->category_id)
                                     ->where('id', '!=', $product->id)
                                     ->where('status', 1)

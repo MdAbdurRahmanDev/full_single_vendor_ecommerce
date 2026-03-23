@@ -72,25 +72,27 @@
             </div>
 
             <!-- Search Bar (Desktop) -->
-            <div class="hidden md:flex flex-1 max-w-2xl relative items-center">
-                <div x-data="{ open: false }" class="relative shrink-0">
-                    <button @click="open = !open" class="flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-l-lg text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none">
-                        All Category
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <form action="{{ route('shop.index') }}" method="GET" class="hidden md:flex flex-1 max-w-2xl relative items-center">
+                <div x-data="{ open: false, selectedCategory: 'All Category', selectedSlug: '' }" class="relative shrink-0">
+                    <button type="button" @click="open = !open" class="flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-l-lg text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span x-text="selectedCategory"></span>
+                        <svg class="w-4 h-4 ml-2 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-xl z-50 overflow-hidden">
+                    <input type="hidden" name="category" x-model="selectedSlug">
+                    <div x-show="open" @click.away="open = false" x-transition.opacity class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-xl z-50 overflow-hidden">
+                        <a href="#" @click.prevent="selectedCategory = 'All Category'; selectedSlug = ''; open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand hover:text-white transition">All Category</a>
                         @foreach($global_categories ?? [] as $category)
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">{{ $category->name }}</a>
+                            <a href="#" @click.prevent="selectedCategory = '{{ $category->name }}'; selectedSlug = '{{ $category->slug }}'; open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand hover:text-white transition">{{ $category->name }}</a>
                         @endforeach
                     </div>
                 </div>
-                <input type="text" placeholder="Search product or brand here..."
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search product or brand here..."
                     class="flex-1 bg-gray-50 border-y border-r md:border-r-0 border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand">
-                <button class="bg-brand text-white px-6 py-2 rounded-r-lg hover:bg-brand-strong transition-all flex items-center">
+                <button type="submit" class="bg-brand text-white px-6 py-2 rounded-r-lg hover:bg-brand-strong transition-all flex items-center">
                     <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <span class="hidden lg:inline">Search</span>
+                    <span class="hidden lg:inline uppercase font-black text-xs tracking-widest">Search</span>
                 </button>
-            </div>
+            </form>
 
             <!-- Icons -->
             <div class="flex items-center space-x-5 text-gray-700">
@@ -111,15 +113,15 @@
         </div>
 
         <!-- Mobile Search (Tablet/Mobile) -->
-        <div class="md:hidden px-4 pb-4">
+        <form action="{{ route('shop.index') }}" method="GET" class="md:hidden px-4 pb-4">
             <div class="relative flex">
-                <input type="text" placeholder="Search product..."
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search product..."
                     class="w-full bg-gray-100 border-none rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-brand">
-                <button class="absolute right-3 top-2 text-gray-500">
+                <button type="submit" class="absolute right-3 top-2 text-gray-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </button>
             </div>
-        </div>
+        </form>
     </header>
 
     <!-- Main Content -->
