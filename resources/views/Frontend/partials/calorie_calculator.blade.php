@@ -18,7 +18,7 @@
         
         this.result = Math.round(bmr * parseFloat(this.activity));
     }
-}" @open-calorie-modal.window="open = true" class="relative z-[200]">
+}" @open-calorie-modal.window="open = true" class="relative z-[200]" x-cloak>
     
     <!-- Modal Backdrop -->
     <div x-show="open" 

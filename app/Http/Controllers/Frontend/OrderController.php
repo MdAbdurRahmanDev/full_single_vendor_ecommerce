@@ -67,6 +67,7 @@ class OrderController extends Controller
                 'user_id' => auth()->id(),
                 'order_number' => 'ORD-' . strtoupper(Str::random(10)),
                 'full_name' => $request->full_name,
+                'email' => auth()->user()->email ?? null,
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'city' => $request->city,

@@ -22,6 +22,7 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 
@@ -87,7 +88,7 @@
                     <div x-show="open" @click.away="open = false" x-transition.opacity class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-xl z-50 overflow-hidden">
                         <a href="#" @click.prevent="selectedCategory = 'All Category'; selectedSlug = ''; open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand hover:text-white transition">All Category</a>
                         @foreach($global_categories ?? [] as $category)
-                            <a href="#" @click.prevent="selectedCategory = '{{ $category->name }}'; selectedSlug = '{{ $category->slug }}'; open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand hover:text-white transition">{{ $category->name }}</a>
+                            <a href="#" @click.prevent="selectedCategory = '{{ $category->name ?? '' }}'; selectedSlug = '{{ $category->slug ?? '' }}'; open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand hover:text-white transition">{{ $category->name ?? 'Category' }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -184,9 +185,9 @@
                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Boutique Categories</p>
                         <nav class="flex flex-col space-y-1">
                             @foreach($global_categories ?? [] as $category)
-                            <a href="{{ route('shop.index', ['category' => $category->slug]) }}" class="px-5 py-3 hover:text-brand text-gray-900 text-sm font-bold transition flex items-center space-x-3">
-                                <div class="w-1.5 h-1.5 bg-brand/20 rounded-full group-hover:bg-brand"></div>
-                                <span>{{ $category->name }}</span>
+                            <a href="{{ route('shop.index', ['category' => $category->slug ?? '']) }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>{{ $category->name ?? 'Category' }}</span>
+                                <span class="text-gray-200 text-[10px] group-hover:text-brand transition">{{ $category->products_count ?? 0 }} items</span>
                             </a>
                             @endforeach
                         </nav>

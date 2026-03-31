@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -38,4 +39,10 @@ Route::middleware('auth:admin')->group(function () {
 
     // Slider Management
     Route::resource('sliders', SliderController::class);
+
+    // Order Management
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('order.show');
+    Route::post('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('order.status');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 });
