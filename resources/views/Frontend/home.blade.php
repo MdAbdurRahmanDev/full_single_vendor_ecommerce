@@ -195,6 +195,9 @@
                         {{ $tab }}
                     </button>
                 @endforeach
+                <button @click="$dispatch('open-calorie-modal')" class="px-5 py-2 rounded-xl text-xs font-bold bg-brand text-white shadow-lg shadow-brand/20 hover:scale-105 transition-all">
+                    Calorie Calculator
+                </button>
             </div>
         </div>
 

@@ -72,6 +72,7 @@
                 <a href="{{ route('home') }}" class="hover:text-brand transition {{ request()->routeIs('home') ? 'text-brand underline decoration-2 underline-offset-8' : '' }}">Home</a>
                 <a href="{{ route('shop.index') }}" class="hover:text-brand transition {{ request()->is('shop*') ? 'text-brand underline decoration-2 underline-offset-8' : '' }}">Shop</a>
                 <a href="#" class="hover:text-brand transition">New Arrival</a>
+                <a href="#" @click.prevent="$dispatch('open-calorie-modal')" class="hover:text-brand transition">Calorie Calculator</a>
             </div>
 
             <!-- Search Bar (Desktop) -->
@@ -168,6 +169,10 @@
                             </a>
                             <a href="{{ route('shop.index') }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
                                 <span>Shop Gallery</span>
+                                <svg class="w-4 h-4 text-gray-200 transform group-hover:translate-x-1 group-hover:text-brand transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </a>
+                            <a href="#" @click.prevent="$dispatch('open-calorie-modal'); mobileMenu = false" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Calorie Calculator</span>
                                 <svg class="w-4 h-4 text-gray-200 transform group-hover:translate-x-1 group-hover:text-brand transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                             </a>
                         </nav>
@@ -287,7 +292,7 @@
     </footer>
 
     <!-- App-Style Bottom Mobile Navigation -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 py-3 z-[100] shadow-[0_-4px_10px_rgba(0,0,0,0.03)] flex items-center justify-between">
+    <div x-data="{}" class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 py-3 z-[100] shadow-[0_-4px_10px_rgba(0,0,0,0.03)] flex items-center justify-between">
         <!-- Home Link -->
         <a href="{{ route('home') }}" class="flex flex-col items-center space-y-1 {{ request()->routeIs('home') ? 'text-brand' : 'text-gray-400 hover:text-brand' }} transition-all">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -306,10 +311,10 @@
             <span class="absolute -top-1 -right-1 bg-gray-900 border-2 border-white text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center">{{ count((array) session('cart')) }}</span>
         </a>
 
-        <!-- Wishlist Link -->
-        <a href="#" class="flex flex-col items-center space-y-1 text-gray-400 hover:text-brand transition-all">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-            <span class="text-[9px] font-black uppercase tracking-widest">Saved</span>
+        <!-- Calorie Calculator Link -->
+        <a href="#" @click.prevent="$dispatch('open-calorie-modal')" class="flex flex-col items-center space-y-1 text-gray-400 hover:text-brand transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span class="text-[9px] font-black uppercase tracking-widest">Calorie</span>
         </a>
 
         <!-- Account Link -->
@@ -342,6 +347,8 @@
         </div>
     </div>
     @endif
+
+    @include('Frontend.partials.calorie_calculator')
 
 </body>
 
