@@ -7,6 +7,7 @@
     <title>{{ $global_settings['meta_title'] ?? 'Ecommerce' }}</title>
     <meta name="description" content="{{ $global_settings['meta_description'] ?? '' }}">
     <meta name="keywords" content="{{ $global_settings['meta_keywords'] ?? '' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -324,20 +325,43 @@
         </a>
     </div>
 
-    <!-- Notifications Hub (Orange Toast) -->
-    @if(session('success'))
-    <div x-data="{ show: true }" 
-         x-init="setTimeout(() => show = false, 4000)"
-         x-show="show"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="translate-y-20 opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="translate-y-0 opacity-100"
-         x-transition:leave-end="translate-y-20 opacity-0"
-         class="fixed bottom-24 right-4 md:right-8 z-[200]">
-        <div class="bg-gray-900 border-l-4 border-brand text-white px-8 py-5 rounded-[25px] shadow-2xl flex items-center space-x-6">
-            <div class="w-10 h-10 bg-brand rounded-xl flex items-center justify-center">
+    <!-- Global Notifications Hub (Alpine.js) -->
+    <div x-data="{ 
+            messages: [],
+            add(msg, type = 'success') {
+                const id = Date.now();
+                this.messages.push({ id, text: msg, type });
+                setTimeout(() => {
+                    this.messages = this.messages.filter(m => m.id !== id);
+                }, 4000);
+            }
+         }" 
+         @notify.window="add($event.detail.message, $event.detail.type)"
+         class="fixed bottom-24 right-4 md:right-8 z-[250] space-y-4">
+        
+        <template x-for="message in messages" :key="message.id">
+            <div x-show="true"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="translate-y-20 opacity-0"
+                 x-transition:enter-end="translate-y-0 opacity-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-y-0 opacity-100"
+                 x-transition:leave-end="translate-y-20 opacity-0"
+                 class="bg-gray-900 border-l-4 border-brand text-white px-8 py-5 rounded-[25px] shadow-2xl flex items-center space-x-6 min-w-[300px]">
+                <div class="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-brand mb-1" x-text="message.type === 'success' ? 'Success Journey' : 'Alert'"></p>
+                    <p class="text-xs font-bold text-white lowercase tracking-tight" x-text="message.text"></p>
+                </div>
+            </div>
+        </template>
+
+        {{-- Session Success Template --}}
+        @if(session('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-transition:enter="..." ... class="bg-gray-900 border-l-4 border-brand text-white px-8 py-5 rounded-[25px] shadow-2xl flex items-center space-x-6">
+             <div class="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             </div>
             <div>
@@ -345,8 +369,45 @@
                 <p class="text-xs font-bold text-white lowercase tracking-tight">{{ session('success') }}</p>
             </div>
         </div>
+        @endif
+        @if(session('error'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-transition:enter="..." ... class="bg-red-600 border-l-4 border-red-800 text-white px-8 py-5 rounded-[25px] shadow-2xl flex items-center space-x-6">
+            <div class="w-10 h-10 bg-red-800 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </div>
+            <div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-white/50 mb-1">Error Occurred</p>
+                <p class="text-xs font-bold text-white lowercase tracking-tight">{{ session('error') }}</p>
+            </div>
+        </div>
+        @endif
     </div>
-    @endif
+
+    <script>
+        function toggleWishlist(productId) {
+            fetch('/wishlist/toggle/' + productId, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Accept': 'application/json'
+                }
+            })
+            .then(async response => {
+                const data = await response.json();
+                if (response.status === 401) {
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                window.dispatchEvent(new CustomEvent('notify', {
+                    detail: { message: data.message, type: 'success' }
+                }));
+            })
+            .catch(error => {
+                console.error('Wishlist Error:', error);
+            });
+        }
+    </script>
 
     @include('Frontend.partials.calorie_calculator')
 

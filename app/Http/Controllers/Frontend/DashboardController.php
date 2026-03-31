@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Orders;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,15 +17,15 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Total Orders
-        $total_orders = Orders::where('user_id', $user->id)->count();
-        $total_order_amount = Orders::where('user_id', $user->id)->sum('total_amount');
+        $total_orders = Order::where('user_id', $user->id)->count();
+        $total_order_amount = Order::where('user_id', $user->id)->sum('total_amount');
 
         // In-Process Orders (Pending/Processing)
-        $in_process_orders = Orders::where('user_id', $user->id)
+        $in_process_orders = Order::where('user_id', $user->id)
             ->whereIn('order_status', ['pending', 'processing'])
             ->count();
         
-        $in_process_amount = Orders::where('user_id', $user->id)
+        $in_process_amount = Order::where('user_id', $user->id)
             ->whereIn('order_status', ['pending', 'processing'])
             ->sum('total_amount');
 
@@ -45,7 +45,7 @@ class DashboardController extends Controller
      */
     public function orders()
     {
-        $orders = Orders::where('user_id', Auth::id())->latest()->get();
+        $orders = Order::where('user_id', Auth::id())->with('items.product')->latest()->get();
         return view('Frontend.orders', compact('orders'));
     }
 

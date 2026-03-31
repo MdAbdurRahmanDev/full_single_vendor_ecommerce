@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         if (Schema::hasTable('categories')) {
-            $categories = \App\Models\Categorie::where('status', 'active')->get();
+            $categories = \App\Models\Categorie::where('status', 'active')->withCount('products')->get();
             View::share('global_categories', $categories);
         }
     }

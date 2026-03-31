@@ -16,6 +16,7 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [OrderController::class, 'store'])->name('order.store');
 Route::post('/add-to-cart/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'remove'])->name('cart.remove');
 Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.update');
@@ -25,6 +26,8 @@ Route::get('/order/success', [OrderController::class, 'success'])->name('payment
 Route::get('/help', [HomeController::class, 'help'])->name('help');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [SupportController::class, 'contactStore'])->name('contact.store');
+
+use App\Http\Controllers\Frontend\WishlistController;
 
 // Authentication (User)
 Route::middleware('guest')->group(function () {
@@ -39,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-orders', [DashboardController::class, 'orders'])->name('orders.index');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/toggle/{id}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
