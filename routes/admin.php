@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -39,6 +40,9 @@ Route::middleware('auth:admin')->group(function () {
 
     // Slider Management
     Route::resource('sliders', SliderController::class);
+
+    // User Management
+    Route::resource('users', UserController::class);
 
     // Order Management
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
