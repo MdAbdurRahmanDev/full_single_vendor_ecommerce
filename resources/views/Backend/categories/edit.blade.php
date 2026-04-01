@@ -4,14 +4,14 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold text-heading text-neutral-900">Edit Category</h2>
-            <a href="{{ route('categories.index') }}"
+            <a href="{{ route('admin.categories.index') }}"
                 class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white font-semibold text-sm text-gray-700 hover:bg-gray-50 transition-all">
                 Back to List
             </a>
         </div>
 
         <div class="bg-white rounded-xl shadow-sm border border-default p-6 max-w-4xl mx-auto">
-            <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -65,7 +65,7 @@
                         class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-brand hover:bg-brand-strong focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand transition-all">
                         Update Category
                     </button>
-                    <a href="{{ route('categories.index') }}"
+                    <a href="{{ route('admin.categories.index') }}"
                         class="ml-3 inline-flex items-center px-6 py-2.5 border border-default-medium rounded-lg shadow-sm font-medium text-sm text-gray-700 hover:bg-neutral-secondary-medium transition-all">
                         Cancel Changes
                     </a>

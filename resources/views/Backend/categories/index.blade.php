@@ -4,7 +4,7 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold text-heading">Categories</h2>
-            <a href="{{ route('categories.create') }}"
+            <a href="{{ route('admin.categories.create') }}"
                 class="inline-flex items-center px-4 py-2 bg-brand text-white border border-transparent rounded-lg font-semibold text-sm hover:bg-brand-strong transition-all">
                 Add New Category
             </a>
@@ -49,9 +49,9 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-right space-x-2">
-                                <a href="{{ route('categories.edit', $category->id) }}"
+                                <a href="{{ route('admin.categories.edit', $category->id) }}"
                                     class="text-blue-600 hover:text-blue-900 font-medium text-sm">Edit</a>
-                                <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
+                                <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST"
                                     class="inline-block" onsubmit="return confirm('Are you sure?')">
                                     @csrf
                                     @method('DELETE')

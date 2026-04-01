@@ -4,14 +4,14 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold text-heading">Add Product</h2>
-            <a href="{{ route('products.index') }}"
+            <a href="{{ route('admin.products.index') }}"
                 class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white font-semibold text-sm text-gray-700 hover:bg-gray-50 transition-all">
                 Back to List
             </a>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-default p-8 max-w-5xl mx-auto">
-            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

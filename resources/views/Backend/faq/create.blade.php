@@ -3,7 +3,7 @@
 @section('admin')
 <div class="p-6 max-w-4xl">
     <div class="mb-6 flex items-center space-x-4">
-        <a href="{{ route('faq.index') }}" class="w-10 h-10 border border-default rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
+        <a href="{{ route('admin.faq.index') }}" class="w-10 h-10 border border-default rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </a>
         <h1 class="text-2xl font-black text-heading">Add New FAQ</h1>
@@ -16,7 +16,7 @@
     @endif
 
     <div class="bg-white rounded-2xl shadow-sm border border-default p-10">
-        <form action="{{ route('faq.store') }}" method="POST" class="space-y-8">
+        <form action="{{ route('admin.faq.store') }}" method="POST" class="space-y-8">
             @csrf
             <div class="space-y-2">
                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Question *</label>

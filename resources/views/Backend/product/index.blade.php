@@ -4,7 +4,7 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold text-heading">Products</h2>
-            <a href="{{ route('products.create') }}"
+            <a href="{{ route('admin.products.create') }}"
                 class="inline-flex items-center px-4 py-2 bg-brand text-white border border-transparent rounded-lg font-semibold text-sm hover:bg-brand-strong transition-all">
                 Add New Product
             </a>
@@ -61,9 +61,9 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-right space-x-2">
-                                    <a href="{{ route('products.edit', $product->id) }}"
+                                    <a href="{{ route('admin.products.edit', $product->id) }}"
                                         class="text-blue-600 hover:text-blue-900 font-medium text-sm">Edit</a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
                                         class="inline-block" onsubmit="return confirm('Delete this product?')">
                                         @csrf
                                         @method('DELETE')

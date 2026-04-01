@@ -4,14 +4,14 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold text-heading text-neutral-900 border-b-2 border-brand pb-2">Edit Product</h2>
-            <a href="{{ route('products.index') }}"
+            <a href="{{ route('admin.products.index') }}"
                 class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white font-semibold text-sm text-gray-700 hover:bg-gray-50 transition-all">
                 Back to List
             </a>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-default p-8 max-w-5xl mx-auto overflow-hidden">
-            <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('PUT')
                 
@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="pt-6 border-t border-default flex justify-end space-x-3">
-                    <a href="{{ route('products.index') }}" class="px-6 py-2.5 text-sm font-medium text-body hover:bg-neutral-secondary-medium transition-all rounded-lg">Cancel Changes</a>
+                    <a href="{{ route('admin.products.index') }}" class="px-6 py-2.5 text-sm font-medium text-body hover:bg-neutral-secondary-medium transition-all rounded-lg">Cancel Changes</a>
                     <button type="submit"
                         class="px-10 py-2.5 bg-brand text-white border border-transparent rounded-lg font-semibold text-sm shadow-md hover:bg-brand-strong transition-all">
                         Update Product

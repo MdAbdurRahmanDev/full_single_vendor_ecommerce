@@ -4,7 +4,7 @@
 <div class="p-6">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-black text-heading">FAQ Management</h1>
-        <a href="{{ route('faq.create') }}" class="px-5 py-2.5 bg-brand text-white rounded-lg font-bold text-sm hover:bg-brand-strong transition">Add New FAQ</a>
+        <a href="{{ route('admin.faq.create') }}" class="px-5 py-2.5 bg-brand text-white rounded-lg font-bold text-sm hover:bg-brand-strong transition">Add New FAQ</a>
     </div>
 
     @if(session('success'))
@@ -37,8 +37,8 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 space-x-3">
-                        <a href="{{ route('faq.edit', $faq->id) }}" class="text-blue-600 hover:underline font-bold">Edit</a>
-                        <form action="{{ route('faq.destroy', $faq->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this FAQ?')">
+                        <a href="{{ route('admin.faq.edit', $faq->id) }}" class="text-blue-600 hover:underline font-bold">Edit</a>
+                        <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this FAQ?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="text-red-600 hover:underline font-bold">Delete</button>
                         </form>
