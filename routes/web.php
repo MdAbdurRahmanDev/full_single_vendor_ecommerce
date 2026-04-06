@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\DashboardController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\ProductController;
-use App\Http\Controllers\Frontend\OrderController;
-use App\Http\Controllers\Frontend\SupportController;
 use App\Http\Controllers\Frontend\Auth\UserAuthController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Frontend\SupportController;
+use App\Http\Controllers\Frontend\WishlistController;
+use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -27,13 +28,14 @@ Route::get('/payment/success', [OrderController::class, 'paymentSuccess'])->name
 Route::get('/payment/cancel', [OrderController::class, 'paymentCancel'])->name('uddoktapay.cancel');
 Route::post('/payment/webhook', [OrderController::class, 'webhook'])->name('uddoktapay.webhook');
 
-
 // Static Pages
 Route::get('/help', [HomeController::class, 'help'])->name('help');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [SupportController::class, 'contactStore'])->name('contact.store');
 
-use App\Http\Controllers\Frontend\WishlistController;
+Route::view('/privacy-policy', 'Frontend.pages.privacy')->name('privacy');
+Route::view('/terms-of-service', 'Frontend.pages.terms')->name('terms');
+Route::view('/cookie-policy', 'Frontend.pages.cookie')->name('cookie');
 
 // Authentication (User)
 Route::middleware('guest')->group(function () {

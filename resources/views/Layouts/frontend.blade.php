@@ -70,6 +70,14 @@
                         class="text-2xl font-bold text-gray-900 tracking-tight">{{ $global_settings['app_name'] ?? 'BeliBeli' }}</span>
                 @endif
             </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-bold text-gray-600">
+                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-brand' : 'hover:text-brand' }} transition">Overview</a>
+                <a href="{{ route('shop.index') }}" class="{{ request()->routeIs('shop.index') ? 'text-brand' : 'hover:text-brand' }} transition">Collections</a>
+                <a href="{{ route('terms') }}" class="{{ request()->routeIs('terms') ? 'text-brand' : 'hover:text-brand' }} transition">Terms</a>
+                <a href="{{ route('privacy') }}" class="{{ request()->routeIs('privacy') ? 'text-brand' : 'hover:text-brand' }} transition">Privacy</a>
+            </nav>
 
 
             <!-- Icons -->
@@ -209,6 +217,22 @@
                         </nav>
                     </div>
 
+                    <!-- Legal Links -->
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Legal Policies</p>
+                        <nav class="flex flex-col space-y-1">
+                            <a href="{{ route('terms') }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Terms of Service</span>
+                            </a>
+                            <a href="{{ route('privacy') }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Privacy Policy</span>
+                            </a>
+                            <a href="{{ route('cookie') }}" class="px-5 py-4 hover:bg-gray-50 text-gray-900 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-between group decoration-0">
+                                <span>Cookie Policy</span>
+                            </a>
+                        </nav>
+                    </div>
+
                     <!-- User Account -->
                     @auth
                         <div class="pt-10 border-t border-gray-50 space-y-6">
@@ -262,9 +286,9 @@
                 <p>&copy; {{ date('Y') }} {{ $global_settings['app_name'] ?? 'BeliBeli' }}. All rights reserved.
                 </p>
                 <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-brand transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand transition">Terms of Service</a>
-                    <a href="#" class="hover:text-brand transition">Cookie Policy</a>
+                    <a href="{{ route('privacy') }}" class="hover:text-brand transition">Privacy Policy</a>
+                    <a href="{{ route('terms') }}" class="hover:text-brand transition">Terms of Service</a>
+                    <a href="{{ route('cookie') }}" class="hover:text-brand transition">Cookie Policy</a>
                 </div>
             </div>
         </div>
