@@ -71,82 +71,90 @@
             <div class="lg:col-span-9 space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Stat Card 1 -->
-                    <div class="bg-white p-8 rounded-[35px] shadow-sm border border-gray-100 group hover:scale-[1.02] transition-all duration-300">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Total Orders</span>
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Orders</h3>
+                            </div>
                         </div>
-                        <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">{{ sprintf('%02d', $total_orders) }}</h3>
-                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Lifetime Activity</p>
+                        <div class="mt-2">
+                            <p class="text-3xl font-black text-gray-900">{{ sprintf('%02d', $total_orders) }}</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 2 -->
-                    <div class="bg-white p-8 rounded-[35px] shadow-sm border border-gray-100 group hover:scale-[1.02] transition-all duration-300">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Total Spend</span>
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Spend</h3>
+                            </div>
                         </div>
-                        <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($total_order_amount, 2) }}</h3>
-                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Overall Investment</p>
+                        <div class="mt-2">
+                            <p class="text-3xl font-black text-gray-900">৳{{ number_format($total_order_amount, 2) }}</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 3 -->
-                    <div class="bg-white p-8 rounded-[35px] shadow-sm border border-gray-100 group hover:scale-[1.02] transition-all duration-300">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">In Processing</span>
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">In Process</h3>
+                            </div>
                         </div>
-                        <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-brand tracking-tighter leading-none">{{ sprintf('%02d', $in_process_orders) }}</h3>
-                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Shipping Soon</p>
+                        <div class="mt-2">
+                            <p class="text-3xl font-black text-gray-900">{{ sprintf('%02d', $in_process_orders) }}</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 4 -->
-                    <div class="bg-white p-8 rounded-[35px] shadow-sm border border-gray-100 group hover:scale-[1.02] transition-all duration-300">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Processing ৳</span>
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Processing ৳</h3>
+                            </div>
                         </div>
-                        <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($in_process_amount, 2) }}</h3>
-                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Pending Amount</p>
+                        <div class="mt-2">
+                            <p class="text-3xl font-black text-gray-900">৳{{ number_format($in_process_amount, 2) }}</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 5 -->
-                    <div class="bg-white p-8 rounded-[35px] shadow-sm border border-gray-100 group hover:scale-[1.02] transition-all duration-300">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Wallet Balance</span>
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Wallet Balance</h3>
+                            </div>
                         </div>
-                        <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($wallet_balance, 2) }}</h3>
-                            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Available Credits</p>
+                        <div class="mt-2">
+                            <p class="text-3xl font-black text-gray-900">৳{{ number_format($wallet_balance, 2) }}</p>
                         </div>
                     </div>
 
-                    <div class="bg-brand p-8 rounded-[35px] border-0 group hover:scale-[1.05] transition-all duration-300 flex flex-col items-center justify-center text-center text-white cursor-pointer overflow-hidden relative shadow-sm shadow-brand/20">
-                         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                    <a href="{{ route('shop.index') }}" class="bg-brand p-6 rounded-2xl border-0 hover:shadow-lg transition-all duration-300 flex flex-col justify-center relative overflow-hidden group">
+                         <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition"></div>
                          <div class="relative z-10">
-                            <h3 class="text-2xl font-black lowercase tracking-tighter mb-4 leading-none">Find your next fit.</h3>
-                            <a href="{{ route('home') }}" class="inline-block py-3 px-8 bg-white text-brand rounded-2xl text-[9px] font-black uppercase tracking-widest hover:bg-gray-100 transition shadow-sm">Browse Store</a>
+                            <div class="w-12 h-12 bg-white/20 text-white rounded-xl flex items-center justify-center shrink-0 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Explore Store</h3>
+                            <p class="text-sm text-brand-light font-medium flex items-center">Browse all products <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></p>
                          </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Recent Activity Feed (Orange Accents) -->

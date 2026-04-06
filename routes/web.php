@@ -49,6 +49,7 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout')->m
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-orders', [DashboardController::class, 'orders'])->name('orders.index');
+    Route::get('/my-orders/{order}', [DashboardController::class, 'showOrder'])->name('orders.show');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist/toggle/{id}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');

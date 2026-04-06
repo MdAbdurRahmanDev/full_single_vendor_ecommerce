@@ -57,4 +57,13 @@ class DashboardController extends Controller
         $user = Auth::user();
         return view('Frontend.settings', compact('user'));
     }
+
+    /**
+     * Show single order details
+     */
+    public function showOrder($id)
+    {
+        $order = Order::where('user_id', Auth::id())->with('items.product')->findOrFail($id);
+        return view('Frontend.order_details', compact('order'));
+    }
 }

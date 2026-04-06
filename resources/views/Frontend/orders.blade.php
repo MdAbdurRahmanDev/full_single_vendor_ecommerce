@@ -104,7 +104,7 @@
                                         <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">{{ $order->created_at->format('M d, Y') }}</span>
                                     </td>
                                     <td class="px-10 py-8 text-right">
-                                        <a href="#" class="inline-block px-5 py-2 bg-gray-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-brand transition-all shadow-sm">
+                                        <a href="{{ route('orders.show', $order->id) }}" class="inline-block px-5 py-2 bg-gray-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-brand transition-all shadow-sm">
                                             View
                                         </a>
                                     </td>
