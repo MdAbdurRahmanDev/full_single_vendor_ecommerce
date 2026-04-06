@@ -17,6 +17,9 @@
     <!-- Tailwind CSS (via Vite) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="{{ asset('build/assets/app-Css23kEQ.css') }}">
+    <script src="{{ asset('build/assets/app-BbcFlrf5.js') }}"></script>
+
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
