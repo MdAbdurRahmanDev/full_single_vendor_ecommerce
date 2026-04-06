@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    @if(isset($global_settings['favicon']))
+        <link rel="icon" type="image/x-icon" href="{{ asset('uploads/settings/' . $global_settings['favicon']) }}">
+    @endif
+    <title>{{ $global_settings['app_name'] ?? 'Admin Dashboard' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('build/assets/app-Css23kEQ.css') }}">
     <script src="{{ asset('build/assets/app-BbcFlrf5.js') }}"></script>
@@ -27,9 +30,12 @@
                         </svg>
                     </button>
                     <a href="{{ route('admin.dashboard') }}" class="flex ms-2 md:me-24">
-                        <img src="{{ asset('images/logo.png') }}" class="h-6 me-3" alt="FlowBite Logo" />
-                        <span
-                            class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Dashboard</span>
+                        @if(isset($global_settings['logo']))
+                            <img src="{{ asset('uploads/settings/' . $global_settings['logo']) }}" class="h-8 me-3" alt="Logo" />
+                        @else
+                            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="Logo" />
+                        @endif
+                        <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">{{ $global_settings['app_name'] ?? 'Dashboard' }}</span>
                     </a>
                 </div>
                 <div class="flex items-center">
@@ -92,9 +98,13 @@
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
-            <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Flowbite Logo" />
-                <span class="self-center text-lg text-heading font-semibold whitespace-nowrap">Flowbite</span>
+            <a href="{{ route('home') }}" target="_blank" class="flex items-center ps-2.5 mb-5">
+                @if(isset($global_settings['logo']))
+                    <img src="{{ asset('uploads/settings/' . $global_settings['logo']) }}" class="h-6 me-3" alt="Logo" />
+                @else
+                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Logo" />
+                @endif
+                <span class="self-center text-lg text-heading font-semibold whitespace-nowrap">{{ $global_settings['app_name'] ?? 'Flowbite' }}</span>
             </a>
             <ul class="space-y-2 font-medium">
                 <li>

@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if(isset($global_settings['favicon']))
+        <link rel="icon" type="image/x-icon" href="{{ asset('uploads/settings/' . $global_settings['favicon']) }}">
+    @endif
     <title>@yield('meta_title', $global_settings['meta_title'] ?? ($global_settings['app_name'] ?? 'Ecommerce'))</title>
     <meta name="description" content="@yield('meta_description', $global_settings['meta_description'] ?? '')">
     <meta name="keywords" content="@yield('meta_keywords', $global_settings['meta_keywords'] ?? '')">
