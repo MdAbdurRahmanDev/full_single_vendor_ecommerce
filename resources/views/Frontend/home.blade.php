@@ -126,19 +126,34 @@
                         </div>
                         
                         <!-- Input Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" x-show="gender">
-                            <template x-for="field in [{id:'age',label:'AGE',unit:'Years'}, {id:'height',label:'HEIGHT',unit:'CM'}, {id:'weight',label:'WEIGHT',unit:'KG'}]">
-                                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 focus-within:bg-white focus-within:border-brand transition-all">
-                                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3" x-text="field.label"></p>
-                                    <div class="relative">
-                                        <input type="number" x-model="this[field.id]" placeholder="0" @keyup.enter="calculateCalories()" class="w-full text-2xl font-bold bg-transparent border-none focus:ring-0 p-0 text-slate-800 placeholder:text-slate-200">
-                                        <span class="absolute right-0 bottom-1 text-[9px] font-bold text-slate-300" x-text="field.unit"></span>
-                                    </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                            <!-- Age -->
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 focus-within:bg-white focus-within:border-brand transition-all">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">AGE</p>
+                                <div class="relative">
+                                    <input type="number" x-model="age" placeholder="25" @keyup.enter="calculateCalories()" class="w-full text-2xl font-bold bg-transparent border-none focus:ring-0 p-0 text-slate-800 placeholder:text-slate-200">
+                                    <span class="absolute right-0 bottom-1 text-[9px] font-bold text-slate-300">YRS</span>
                                 </div>
-                            </template>
+                            </div>
+                            <!-- Height -->
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 focus-within:bg-white focus-within:border-brand transition-all">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">HEIGHT</p>
+                                <div class="relative">
+                                    <input type="number" x-model="height" placeholder="170" @keyup.enter="calculateCalories()" class="w-full text-2xl font-bold bg-transparent border-none focus:ring-0 p-0 text-slate-800 placeholder:text-slate-200">
+                                    <span class="absolute right-0 bottom-1 text-[9px] font-bold text-slate-300">CM</span>
+                                </div>
+                            </div>
+                            <!-- Weight -->
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 focus-within:bg-white focus-within:border-brand transition-all">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">WEIGHT</p>
+                                <div class="relative">
+                                    <input type="number" x-model="weight" placeholder="70" @keyup.enter="calculateCalories()" class="w-full text-2xl font-bold bg-transparent border-none focus:ring-0 p-0 text-slate-800 placeholder:text-slate-200">
+                                    <span class="absolute right-0 bottom-1 text-[9px] font-bold text-slate-300">KG</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="flex justify-center" x-show="gender">
+                        <div class="flex justify-center">
                             <button @click="calculateCalories()" class="px-12 py-3.5 bg-slate-800 text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-brand transition-all shadow-md">Calculate Energy</button>
                         </div>
 
@@ -263,101 +278,6 @@
             };
         }
     </script>
-
-    <!-- Essential Health Script -->
-    <script>
-        function healthHub() {
-            return {
-                activeTab: 'weight',
-                chartGender: 'male',
-                lookupHeight: '',
-                lookupResult: null,
-                gender: '',
-                age: '',
-                height: '',
-                weight: '',
-                result: null,
-
-                weightDatabase: [
-                    {cm:137, ft:'4-6', f_min:28.5, f_max:34.9, m_min:28.5, m_max:34.9},
-                    {cm:140, ft:'4-7', f_min:30.8, f_max:37.6, m_min:30.8, m_max:38.1},
-                    {cm:142, ft:'4-8', f_min:32.6, f_max:39.9, m_min:33.5, m_max:40.8},
-                    {cm:145, ft:'4-9', f_min:34.9, f_max:42.6, m_min:35.8, m_max:43.9},
-                    {cm:147, ft:'4-10', f_min:36.4, f_max:44.9, m_min:38.5, m_max:46.7},
-                    {cm:150, ft:'4-11', f_min:39.0, f_max:47.6, m_min:40.8, m_max:49.9},
-                    {cm:152, ft:'5-0', f_min:40.8, f_max:49.9, m_min:43.1, m_max:53.0},
-                    {cm:155, ft:'5-1', f_min:43.1, f_max:52.6, m_min:45.8, m_max:55.8},
-                    {cm:157, ft:'5-2', f_min:44.9, f_max:54.9, m_min:48.1, m_max:58.9},
-                    {cm:160, ft:'5-3', f_min:47.2, f_max:57.6, m_min:50.8, m_max:61.6},
-                    {cm:163, ft:'5-4', f_min:49.0, f_max:59.9, m_min:53.0, m_max:64.8},
-                    {cm:165, ft:'5-5', f_min:51.2, f_max:62.6, m_min:55.3, m_max:68.0},
-                    {cm:168, ft:'5-6', f_min:53.0, f_max:64.8, m_min:58.0, m_max:70.7},
-                    {cm:170, ft:'5-7', f_min:55.3, f_max:67.6, m_min:60.3, m_max:73.9},
-                    {cm:173, ft:'5-8', f_min:57.1, f_max:69.8, m_min:63.0, m_max:76.6},
-                    {cm:175, ft:'5-9', f_min:59.4, f_max:72.6, m_min:65.3, m_max:79.8},
-                    {cm:178, ft:'5-10', f_min:61.2, f_max:74.8, m_min:67.6, m_max:83.0},
-                    {cm:180, ft:'5-11', f_min:63.5, f_max:77.5, m_min:70.3, m_max:85.7},
-                    {cm:183, ft:'6-0', f_min:65.3, f_max:79.8, m_min:72.6, m_max:88.9},
-                    {cm:185, ft:'6-1', f_min:67.6, f_max:82.5, m_min:75.3, m_max:91.6},
-                    {cm:188, ft:'6-2', f_min:69.4, f_max:84.8, m_min:77.5, m_max:94.8},
-                    {cm:191, ft:'6-3', f_min:71.6, f_max:87.5, m_min:79.8, m_max:98.0}
-                ],
-
-                findIdealWeight() {
-                    if(!this.lookupHeight) return;
-                    let hStr = this.lookupHeight.toString();
-                    let targetCm = 0;
-
-                    // Support 4.6, 4-6, or 4'6"
-                    if(hStr.includes('.') || hStr.includes('-') || hStr.includes("'")) {
-                        let parts = hStr.split(/[.\-\']+/);
-                        let ft = parseInt(parts[0]);
-                        let inch = parts[1] ? parseInt(parts[1]) : 0;
-                        targetCm = Math.round((ft * 30.48) + (inch * 2.54));
-                    } else {
-                        targetCm = parseInt(hStr);
-                    }
-
-                    let closest = this.weightDatabase.reduce((prev, curr) => {
-                        return (Math.abs(curr.cm - targetCm) < Math.abs(prev.cm - targetCm) ? curr : prev);
-                    });
-
-                    let minKg = this.chartGender === 'male' ? closest.m_min : closest.f_min;
-                    let maxKg = this.chartGender === 'male' ? closest.m_max : closest.f_max;
-                    
-                    this.lookupResult = {
-                        h: closest.cm + 'cm / ' + closest.ft.replace('-', '\'') + '\"',
-                        weightKg: minKg + ' - ' + maxKg,
-                        weightLb: Math.round(minKg * 2.204) + ' - ' + Math.round(maxKg * 2.204)
-                    };
-                },
-
-                calculateCalories() {
-                    if(!this.gender || !this.age || !this.height || !this.weight) return;
-                    const w = parseFloat(this.weight);
-                    const h = parseFloat(this.height);
-                    const a = parseFloat(this.age);
-                    
-                    let bmr = this.gender === 'male' 
-                        ? (10 * w + 6.25 * h - 5 * a + 5) 
-                        : (10 * w + 6.25 * h - 5 * a - 161);
-
-                    this.result = {
-                        bmr: Math.round(bmr),
-                        sedentary: Math.round(bmr * 1.2),
-                        moderate: Math.round(bmr * 1.55),
-                        active: Math.round(bmr * 1.8)
-                    };
-                },
-
-                resetCalorie() {
-                    this.result = null;
-                }
-            };
-        }
-    </script>
-
-    <!-- Flash Sale -->
 
     <!-- Flash Sale -->
     <section class="container mx-auto px-4 mt-16">
