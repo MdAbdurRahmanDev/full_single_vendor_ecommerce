@@ -1,5 +1,9 @@
 @extends('Layouts.frontend')
 
+@section('meta_title', $global_settings['home_meta_title'] ?? $global_settings['meta_title'] ?? 'Home')
+@section('meta_description', $global_settings['home_meta_description'] ?? $global_settings['meta_description'] ?? '')
+@section('meta_keywords', $global_settings['home_meta_keywords'] ?? $global_settings['meta_keywords'] ?? '')
+
 @section('content')
     <!-- ═══ Health & Wellness Hub (Professional Version) ═══ -->
     <section class="py-16 bg-slate-50 border-y border-slate-100" x-data="healthHub()" id="wellness-center">

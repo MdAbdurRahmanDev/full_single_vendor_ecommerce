@@ -1,5 +1,9 @@
 @extends('Layouts.frontend')
 
+@section('meta_title', $global_settings['shop_meta_title'] ?? $global_settings['meta_title'] ?? 'Shop')
+@section('meta_description', $global_settings['shop_meta_description'] ?? $global_settings['meta_description'] ?? '')
+@section('meta_keywords', $global_settings['shop_meta_keywords'] ?? $global_settings['meta_keywords'] ?? '')
+
 @section('content')
     <!-- Breadcrumbs -->
     <div class="bg-white border-b border-gray-100 py-4">

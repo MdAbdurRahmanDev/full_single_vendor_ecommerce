@@ -4,10 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $global_settings['meta_title'] ?? 'Ecommerce' }}</title>
-    <meta name="description" content="{{ $global_settings['meta_description'] ?? '' }}">
-    <meta name="keywords" content="{{ $global_settings['meta_keywords'] ?? '' }}">
+    <title>@yield('meta_title', $global_settings['meta_title'] ?? ($global_settings['app_name'] ?? 'Ecommerce'))</title>
+    <meta name="description" content="@yield('meta_description', $global_settings['meta_description'] ?? '')">
+    <meta name="keywords" content="@yield('meta_keywords', $global_settings['meta_keywords'] ?? '')">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:title" content="@yield('meta_title', $global_settings['meta_title'] ?? ($global_settings['app_name'] ?? 'Ecommerce'))">
+    <meta property="og:description" content="@yield('meta_description', $global_settings['meta_description'] ?? '')">
+    <meta property="og:image" content="@yield('meta_image', isset($global_settings['logo']) ? asset('uploads/settings/' . $global_settings['logo']) : '')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="@yield('meta_type', 'website')">
+    <meta property="og:site_name" content="{{ $global_settings['app_name'] ?? 'Ecommerce' }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('meta_title', $global_settings['meta_title'] ?? ($global_settings['app_name'] ?? 'Ecommerce'))">
+    <meta name="twitter:description" content="@yield('meta_description', $global_settings['meta_description'] ?? '')">
+    <meta name="twitter:image" content="@yield('meta_image', isset($global_settings['logo']) ? asset('uploads/settings/' . $global_settings['logo']) : '')">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

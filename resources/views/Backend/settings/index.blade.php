@@ -81,6 +81,96 @@
                     </div>
                 </div>
 
+                <!-- Home Page SEO Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-default p-6 space-y-6">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-heading">Home Page SEO</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Home Meta Title</label>
+                            <input type="text" name="home_meta_title" value="{{ $settings['home_meta_title'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Home Meta Keywords</label>
+                            <input type="text" name="home_meta_keywords" value="{{ $settings['home_meta_keywords'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand" placeholder="comma separated">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Home Meta Description</label>
+                            <textarea name="home_meta_description" rows="3"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">{{ $settings['home_meta_description'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Page SEO Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-default p-6 space-y-6">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="p-2 bg-purple-50 rounded-lg text-purple-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 11-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-heading">Shop Page SEO</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Shop Meta Title</label>
+                            <input type="text" name="shop_meta_title" value="{{ $settings['shop_meta_title'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Shop Meta Keywords</label>
+                            <input type="text" name="shop_meta_keywords" value="{{ $settings['shop_meta_keywords'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand" placeholder="comma separated">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Shop Meta Description</label>
+                            <textarea name="shop_meta_description" rows="3"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">{{ $settings['shop_meta_description'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login Page SEO Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-default p-6 space-y-6">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="p-2 bg-pink-50 rounded-lg text-pink-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-heading">Login & Register SEO</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Auth Meta Title</label>
+                            <input type="text" name="auth_meta_title" value="{{ $settings['auth_meta_title'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Auth Meta Keywords</label>
+                            <input type="text" name="auth_meta_keywords" value="{{ $settings['auth_meta_keywords'] ?? '' }}"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand" placeholder="comma separated">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-body mb-2">Auth Meta Description</label>
+                            <textarea name="auth_meta_description" rows="3"
+                                class="w-full rounded-lg border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm focus:border-brand focus:ring-brand">{{ $settings['auth_meta_description'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Contact & Social Card -->
                 <div class="bg-white rounded-2xl shadow-sm border border-default p-6 space-y-6">
                     <div class="flex items-center space-x-3 mb-2">

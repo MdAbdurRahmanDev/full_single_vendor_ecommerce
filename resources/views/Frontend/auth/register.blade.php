@@ -1,5 +1,9 @@
 @extends('Layouts.frontend')
 
+@section('meta_title', $global_settings['auth_meta_title'] ?? $global_settings['meta_title'] ?? 'Register')
+@section('meta_description', $global_settings['auth_meta_description'] ?? $global_settings['meta_description'] ?? '')
+@section('meta_keywords', $global_settings['auth_meta_keywords'] ?? $global_settings['meta_keywords'] ?? '')
+
 @section('content')
 <div class="min-h-[85vh] flex flex-col md:flex-row bg-white overflow-hidden">
     <!-- Left Side: Register Form -->

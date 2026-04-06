@@ -1,5 +1,9 @@
 @extends('Layouts.frontend')
 
+@section('meta_title', $product->name . ' | ' . ($global_settings['app_name'] ?? 'Ecommerce'))
+@section('meta_description', Str::limit(strip_tags($product->short_description ?? $product->description), 160))
+@section('meta_image', Str::startsWith($product->thumbnail ?? $product->image, 'http') ? ($product->thumbnail ?? $product->image) : asset('uploads/product/' . ($product->thumbnail ?? $product->image)))
+
 @section('content')
 <div class="bg-white min-h-screen">
     <!-- Breadcrumbs -->
