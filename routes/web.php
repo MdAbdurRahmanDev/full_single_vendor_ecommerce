@@ -22,6 +22,12 @@ Route::delete('/remove-from-cart', [CartController::class, 'remove'])->name('car
 Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.update');
 Route::get('/order/success', [OrderController::class, 'success'])->name('payment.success');
 
+// UddoktaPay Routes
+Route::get('/payment/success', [OrderController::class, 'paymentSuccess'])->name('uddoktapay.success');
+Route::get('/payment/cancel', [OrderController::class, 'paymentCancel'])->name('uddoktapay.cancel');
+Route::post('/payment/webhook', [OrderController::class, 'webhook'])->name('uddoktapay.webhook');
+
+
 // Static Pages
 Route::get('/help', [HomeController::class, 'help'])->name('help');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

@@ -63,21 +63,19 @@
                             <span class="w-8 h-8 rounded-lg bg-gray-900 text-white text-sm flex items-center justify-center mr-3">2</span>
                             Payment Method
                         </h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <button type="button" @click="method = 'cod'" :class="method === 'cod' ? 'border-brand bg-brand/5' : 'border-gray-100'" 
                                 class="flex flex-col items-center justify-center p-6 border-2 rounded-2xl transition hover:border-brand/50 group">
                                 <svg class="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                                 <span class="font-bold text-sm text-gray-900">Cash on Delivery</span>
                             </button>
-                            <button type="button" @click="method = 'bkash'" :class="method === 'bkash' ? 'border-[#E2136E] bg-[#E2136E]/5' : 'border-gray-100'" 
-                                class="flex flex-col items-center justify-center p-6 border-2 rounded-2xl transition hover:border-[#E2136E]/50 group">
-                                <span class="font-black text-2xl text-[#E2136E] mb-3">bKash</span>
-                                <span class="font-bold text-sm text-gray-900">Online Payment</span>
-                            </button>
-                            <button type="button" @click="method = 'card'" :class="method === 'card' ? 'border-indigo-600 bg-indigo-600/5' : 'border-gray-100'" 
-                                class="flex flex-col items-center justify-center p-6 border-2 rounded-2xl transition hover:border-indigo-600/50 group">
-                                <svg class="w-8 h-8 mb-3 text-gray-400 group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                <span class="font-bold text-sm text-gray-900">Credit / Debit Card</span>
+                            <button type="button" @click="method = 'uddoktapay'" :class="method === 'uddoktapay' ? 'border-blue-600 bg-blue-600/5 shadow-sm' : 'border-gray-100'" 
+                                class="flex flex-col items-center justify-center p-6 border-2 rounded-2xl transition hover:border-blue-600/50 group">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg shadow-sm flex items-center justify-center text-white font-black text-lg">U</div>
+                                    <span class="font-black text-2xl text-blue-600 tracking-tight">UddoktaPay</span>
+                                </div>
+                                <span class="font-bold text-xs text-gray-500 uppercase tracking-wider">bKash, Nagad, Card, Rocket</span>
                             </button>
                         </div>
                     </div>
