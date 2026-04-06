@@ -28,10 +28,12 @@ class OrderController extends Controller
             $subtotal += $item['price'] * $item['quantity'];
         }
  
-        $shipping = 10.00;
-        $total = $subtotal + $shipping;
+        $shipping_zones = \App\Models\ShippingZone::where('is_active', true)->get();
+        // Default shipping to 0 if none exist to prevent errors before selection
+        $shipping = 0;
+        $total = $subtotal;
  
-        return view('Frontend.checkout.order', compact('cart', 'subtotal', 'shipping', 'total'));
+        return view('Frontend.checkout.order', compact('cart', 'subtotal', 'shipping', 'total', 'shipping_zones'));
     }
  
     /**
@@ -43,7 +45,7 @@ class OrderController extends Controller
             'full_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'required|string',
-            'city' => 'required|string|max:100',
+            'shipping_zone_id' => 'required|exists:shipping_zones,id',
             'payment_method' => 'required|string'
         ]);
  
@@ -56,7 +58,11 @@ class OrderController extends Controller
         foreach($cart as $item) {
             $subtotal += $item['price'] * $item['quantity'];
         }
-        $shipping = 10.00;
+        
+        $shippingZone = \App\Models\ShippingZone::find($request->shipping_zone_id);
+        $shipping = $shippingZone ? $shippingZone->cost : 0;
+        $cityName = $shippingZone ? $shippingZone->name : 'Unknown';
+
         $total = $subtotal + $shipping;
  
         try {
@@ -69,7 +75,7 @@ class OrderController extends Controller
                 'email' => auth()->user()->email ?? null,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'city' => $request->city,
+                'city' => $cityName,
                 'postal_code' => $request->postal_code,
                 'total_amount' => $total,
                 'shipping_cost' => $shipping,

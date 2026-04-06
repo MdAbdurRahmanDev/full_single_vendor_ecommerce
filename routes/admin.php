@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\ShippingZoneController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -43,6 +44,9 @@ Route::middleware('auth:admin')->group(function () {
 
     // User Management
     Route::resource('users', UserController::class);
+
+    // Shipping Management
+    Route::resource('shipping_zones', ShippingZoneController::class)->except(['create', 'edit', 'show']);
 
     // Order Management
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');

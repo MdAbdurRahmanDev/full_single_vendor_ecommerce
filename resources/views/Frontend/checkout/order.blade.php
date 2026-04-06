@@ -15,7 +15,7 @@
     </div>
 
     <div class="container mx-auto px-4 pb-20">
-        <form action="{{ route('order.store') }}" method="POST" id="checkout-form" x-data="{ method: 'cod' }">
+        <form action="{{ route('order.store') }}" method="POST" id="checkout-form" x-data="{ method: 'cod', shippingCost: {{ $shipping_zones->first()->cost ?? 0 }}, subtotal: {{ $subtotal }} }">
             @csrf
             <input type="hidden" name="payment_method" :value="method">
             
@@ -43,12 +43,11 @@
                                 <textarea name="address" required rows="3" placeholder="House No, Road, Area, Dhaka" class="w-full px-5 py-3 rounded-2xl border border-gray-200 focus:ring-1 focus:ring-brand focus:border-brand bg-gray-50/50"></textarea>
                             </div>
                             <div class="space-y-2">
-                                <label class="text-sm font-bold text-gray-700">City</label>
-                                <select name="city" required class="w-full px-5 py-3 rounded-2xl border border-gray-200 focus:ring-1 focus:ring-brand focus:border-brand bg-gray-50/50">
-                                    <option value="Dhaka">Dhaka</option>
-                                    <option value="Chittagong">Chittagong</option>
-                                    <option value="Sylhet">Sylhet</option>
-                                    <option value="Rajshahi">Rajshahi</option>
+                                <label class="text-sm font-bold text-gray-700">Shipping Area</label>
+                                <select name="shipping_zone_id" required x-on:change="shippingCost = Number($event.target.options[$event.target.selectedIndex].dataset.cost)" class="w-full px-5 py-3 rounded-2xl border border-gray-200 focus:ring-1 focus:ring-brand focus:border-brand bg-gray-50/50">
+                                    @foreach($shipping_zones as $zone)
+                                        <option value="{{ $zone->id }}" data-cost="{{ $zone->cost }}">{{ $zone->name }} (৳{{ number_format($zone->cost, 2) }})</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="space-y-2">
@@ -109,11 +108,11 @@
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-400 font-medium">Shipping</span>
-                                <span class="font-black text-green-400">+ ৳{{ number_format($shipping, 2) }}</span>
+                                <span class="font-black text-green-400">+ ৳<span x-text="shippingCost.toFixed(2)"></span></span>
                             </div>
-                            <div class="flex justify-between items-center text-xl pt-4">
-                                <span class="font-black">Total</span>
-                                <span class="font-black text-brand">৳{{ number_format($total, 2) }}</span>
+                            <div class="flex justify-between items-center text-xl pt-4 border-t border-white/10 mt-4">
+                                <span class="font-black text-white">Total</span>
+                                <span class="font-black text-brand">৳<span x-text="(subtotal + shippingCost).toFixed(2)"></span></span>
                             </div>
                         </div>
 
