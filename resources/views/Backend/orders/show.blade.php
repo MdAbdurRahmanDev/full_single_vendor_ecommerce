@@ -102,11 +102,11 @@
                     <img src="{{ filter_var($item->product->thumbnail, FILTER_VALIDATE_URL) ? $item->product->thumbnail : asset('uploads/products/'.$item->product->thumbnail) }}" class="w-12 h-12 rounded-lg object-cover shadow-sm bg-gray-100" alt="{{ $item->product->name }}">
                     <div>
                         <p class="text-sm font-black text-gray-900 tracking-tight lowercase">{{ $item->product->name }}</p>
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Qty: {{ $item->quantity }} × ${{ number_format($item->price, 2) }}</p>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Qty: {{ $item->quantity }} × ৳{{ number_format($item->price, 2) }}</p>
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="text-sm font-black text-gray-900 tracking-tight">${{ number_format($item->price * $item->quantity, 2) }}</p>
+                    <p class="text-sm font-black text-gray-900 tracking-tight">৳{{ number_format($item->price * $item->quantity, 2) }}</p>
                 </div>
             </div>
             @endforeach
@@ -115,11 +115,11 @@
         <div class="mt-10 pt-10 border-t border-default space-y-4">
             <div class="flex justify-between items-center text-sm">
                 <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Shipping (Fixed Fee)</span>
-                <span class="text-gray-900 font-black">${{ number_format($order->shipping_cost, 2) }}</span>
+                <span class="text-gray-900 font-black">৳{{ number_format($order->shipping_cost, 2) }}</span>
             </div>
             <div class="flex justify-between items-center text-xl">
                 <span class="text-gray-900 font-black tracking-tight lowercase">Grand total.</span>
-                <span class="text-3xl font-black text-brand tracking-tighter">${{ number_format($order->total_amount, 2) }}</span>
+                <span class="text-3xl font-black text-brand tracking-tighter">৳{{ number_format($order->total_amount, 2) }}</span>
             </div>
         </div>
     </div>

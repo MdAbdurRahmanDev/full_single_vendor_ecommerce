@@ -141,9 +141,9 @@
                                     </div>
                                     <div class="flex flex-col md:flex-row md:items-center justify-between mt-3 md:mt-4 gap-1">
                                         <div class="flex items-center space-x-2">
-                                            <span class="text-base md:text-xl font-black text-gray-900">${{ $product->discount_price ?? $product->price }}</span>
+                                            <span class="text-base md:text-xl font-black text-gray-900">৳{{ $product->discount_price ?? $product->price }}</span>
                                             @if ($product->discount_price)
-                                                <span class="text-[10px] md:text-xs text-gray-400 line-through font-bold">${{ $product->price }}</span>
+                                                <span class="text-[10px] md:text-xs text-gray-400 line-through font-bold">৳{{ $product->price }}</span>
                                             @endif
                                         </div>
                                         <div class="flex items-center text-[8px] md:text-[10px] font-black text-yellow-500">

@@ -17,12 +17,12 @@
                 <div class="bg-gray-900 rounded-2xl shadow-xl p-6 border-b-4 border-brand">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center">
-                            <span class="text-xl font-bold">$</span>
+                            <span class="text-xl font-bold">৳</span>
                         </div>
                         <span class="text-[10px] font-black text-brand uppercase tracking-widest">Total Revenue</span>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-3xl font-black text-white tracking-tighter">${{ number_format($totalRevenue, 2) }}</h3>
+                        <h3 class="text-3xl font-black text-white tracking-tighter">৳{{ number_format($totalRevenue, 2) }}</h3>
                         <p class="text-gray-400 text-xs mt-1 font-medium">Accumulated Earnings</p>
                     </div>
                 </div>

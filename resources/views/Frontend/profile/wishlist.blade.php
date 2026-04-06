@@ -70,7 +70,7 @@
                         </div>
                         <div class="px-2 pb-2">
                             <h4 class="font-black text-gray-900 lowercase tracking-tighter text-sm line-clamp-1 mb-1">{{ $item->product->name }}</h4>
-                            <p class="text-brand font-black tracking-tighter mb-4">${{ number_format($item->product->price, 2) }}</p>
+                            <p class="text-brand font-black tracking-tighter mb-4">৳{{ number_format($item->product->price, 2) }}</p>
                             <form action="{{ route('cart.add', $item->product->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="w-full py-4 bg-gray-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand transition-all">Add to Bag</button>

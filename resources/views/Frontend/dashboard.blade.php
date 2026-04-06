@@ -21,7 +21,7 @@
             <div class="mt-6 md:mt-0 flex items-center space-x-6">
                 <div class="text-right hidden sm:block">
                     <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Account Balance</p>
-                    <h3 class="text-xl font-black text-gray-900 tracking-tighter">${{ number_format($wallet_balance, 2) }}</h3>
+                    <h3 class="text-xl font-black text-gray-900 tracking-tighter">৳{{ number_format($wallet_balance, 2) }}</h3>
                 </div>
                 <a href="{{ route('home') }}" class="px-8 py-4 bg-gray-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand hover:scale-105 transition-all shadow-sm active:scale-95 transform">
                     <span>Explore Brands</span>
@@ -93,7 +93,7 @@
                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Total Spend</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">${{ number_format($total_order_amount, 2) }}</h3>
+                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($total_order_amount, 2) }}</h3>
                             <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Overall Investment</p>
                         </div>
                     </div>
@@ -118,10 +118,10 @@
                             <div class="w-12 h-12 bg-brand-light text-brand rounded-2xl flex items-center justify-center">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                             </div>
-                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Processing $</span>
+                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Processing ৳</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">${{ number_format($in_process_amount, 2) }}</h3>
+                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($in_process_amount, 2) }}</h3>
                             <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Pending Amount</p>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Wallet Balance</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">${{ number_format($wallet_balance, 2) }}</h3>
+                            <h3 class="text-4xl font-black text-gray-900 tracking-tighter leading-none">৳{{ number_format($wallet_balance, 2) }}</h3>
                             <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-1">Available Credits</p>
                         </div>
                     </div>

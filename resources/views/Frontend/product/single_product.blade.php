@@ -54,9 +54,9 @@
                     <h1 class="text-4xl md:text-5xl font-black text-gray-900 lowercase tracking-tighter mb-6 leading-tight max-w-sm">{{ $product->name }}</h1>
                     
                     <div class="flex items-baseline space-x-4 mb-8">
-                        <span class="text-5xl font-black text-gray-900 tracking-tighter">${{ number_format($product->price, 2) }}</span>
+                        <span class="text-5xl font-black text-gray-900 tracking-tighter">৳{{ number_format($product->price, 2) }}</span>
                         @if(isset($product->old_price))
-                        <span class="text-2xl font-bold text-gray-300 line-through tracking-tight">${{ number_format($product->old_price, 2) }}</span>
+                        <span class="text-2xl font-bold text-gray-300 line-through tracking-tight">৳{{ number_format($product->old_price, 2) }}</span>
                         @endif
                     </div>
 
@@ -163,7 +163,7 @@
                     </div>
                     <div>
                         <h4 class="text-sm font-black text-gray-900 lowercase tracking-tight">{{ $rel_product->name }}</h4>
-                        <span class="text-sm font-bold text-brand tracking-tighter">${{ number_format($rel_product->price, 2) }}</span>
+                        <span class="text-sm font-bold text-brand tracking-tighter">৳{{ number_format($rel_product->price, 2) }}</span>
                     </div>
                 </a>
                 @endforeach

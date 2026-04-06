@@ -43,7 +43,7 @@
                         </div>
                     </td>
                     <td class="px-6 py-4">
-                        <span class="text-sm font-bold text-heading">${{ number_format($order->total_amount, 2) }}</span>
+                        <span class="text-sm font-bold text-heading">৳{{ number_format($order->total_amount, 2) }}</span>
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex flex-col space-y-1">

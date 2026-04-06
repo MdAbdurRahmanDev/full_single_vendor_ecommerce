@@ -342,9 +342,9 @@
                                 <a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>
                             </h3>
                             <div class="flex items-center space-x-2">
-                                <span class="text-lg font-black text-gray-900">${{ $product->price }}</span>
+                                <span class="text-lg font-black text-gray-900">৳{{ $product->price }}</span>
                                 @if ($product->discount_price)
-                                    <span class="text-xs text-gray-400 line-through">${{ $product->discount_price }}</span>
+                                    <span class="text-xs text-gray-400 line-through">৳{{ $product->discount_price }}</span>
                                 @endif
                             </div>
                         </div>
@@ -426,7 +426,7 @@
                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">
                             {{ $product->category->name }}</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-xl font-black text-gray-900">${{ $product->price }}</span>
+                            <span class="text-xl font-black text-gray-900">৳{{ $product->price }}</span>
                             <div class="flex items-center">
                                 <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
                                     <path

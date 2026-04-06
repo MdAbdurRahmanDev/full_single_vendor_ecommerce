@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <span class="text-2xl md:text-3xl font-black text-gray-900 tracking-tighter">${{ number_format($details['price'] * $details['quantity'], 2) }}</span>
+                                <span class="text-2xl md:text-3xl font-black text-gray-900 tracking-tighter">৳{{ number_format($details['price'] * $details['quantity'], 2) }}</span>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="space-y-6 mb-12 pb-10 border-b border-gray-200">
                         <div class="flex items-center justify-between text-gray-500">
                             <span class="text-[10px] font-black uppercase tracking-widest">Initial Subtotal</span>
-                            <span class="text-xl font-black text-gray-900 tracking-tighter">${{ number_format($subtotal, 2) }}</span>
+                            <span class="text-xl font-black text-gray-900 tracking-tighter">৳{{ number_format($subtotal, 2) }}</span>
                         </div>
                         <div class="flex items-center justify-between text-gray-500">
                              <span class="text-[10px] font-black uppercase tracking-widest">Delivery Gate</span>
@@ -83,7 +83,7 @@
 
                     <div class="flex items-center justify-between mb-12">
                          <span class="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Total Due</span>
-                         <span class="text-5xl font-black text-brand tracking-tighter">${{ number_format($subtotal, 2) }}</span>
+                         <span class="text-5xl font-black text-brand tracking-tighter">৳{{ number_format($subtotal, 2) }}</span>
                     </div>
 
                     <a href="{{ route('checkout') }}" class="block w-full text-center py-7 bg-brand hover:bg-brand-strong text-white rounded-[30px] text-[10px] font-black uppercase tracking-widest shadow-2xl shadow-brand/30 transition-all transform active:scale-95">

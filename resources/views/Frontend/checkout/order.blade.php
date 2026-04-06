@@ -97,7 +97,7 @@
                                     <h4 class="text-xs font-bold line-clamp-1 truncate">{{ $item['name'] }}</h4>
                                     <p class="text-[10px] text-gray-400">Qty: {{ $item['quantity'] }}</p>
                                 </div>
-                                <span class="text-sm font-black">${{ number_format($item['price'] * $item['quantity'], 2) }}</span>
+                                <span class="text-sm font-black">৳{{ number_format($item['price'] * $item['quantity'], 2) }}</span>
                             </div>
                             @endforeach
                         </div>
@@ -105,15 +105,15 @@
                         <div class="space-y-4 pt-6 border-t border-white/10">
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-400 font-medium">Subtotal</span>
-                                <span class="font-black">${{ number_format($subtotal, 2) }}</span>
+                                <span class="font-black">৳{{ number_format($subtotal, 2) }}</span>
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-400 font-medium">Shipping</span>
-                                <span class="font-black text-green-400">+ ${{ number_format($shipping, 2) }}</span>
+                                <span class="font-black text-green-400">+ ৳{{ number_format($shipping, 2) }}</span>
                             </div>
                             <div class="flex justify-between items-center text-xl pt-4">
                                 <span class="font-black">Total</span>
-                                <span class="font-black text-brand">${{ number_format($total, 2) }}</span>
+                                <span class="font-black text-brand">৳{{ number_format($total, 2) }}</span>
                             </div>
                         </div>
 

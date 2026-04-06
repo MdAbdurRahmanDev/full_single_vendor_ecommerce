@@ -83,7 +83,7 @@
                                         <span class="text-sm font-black text-gray-900 tracking-tighter">#{{ $order->order_number }}</span>
                                     </td>
                                     <td class="px-10 py-8">
-                                        <span class="text-sm font-black text-gray-900 tracking-tighter">${{ number_format($order->total_amount, 2) }}</span>
+                                        <span class="text-sm font-black text-gray-900 tracking-tighter">৳{{ number_format($order->total_amount, 2) }}</span>
                                     </td>
                                     <td class="px-10 py-8">
                                         @php

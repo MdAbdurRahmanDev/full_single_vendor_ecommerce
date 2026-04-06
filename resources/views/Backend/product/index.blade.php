@@ -45,9 +45,9 @@
                                     <span class="text-sm text-body">{{ $product->category->name ?? 'Uncategorized' }}</span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm font-semibold text-heading">${{ number_format($product->price, 2) }}</div>
+                                    <div class="text-sm font-semibold text-heading">৳{{ number_format($product->price, 2) }}</div>
                                     @if($product->discount_price)
-                                        <div class="text-xs text-red-500 line-through">${{ number_format($product->discount_price, 2) }}</div>
+                                        <div class="text-xs text-red-500 line-through">৳{{ number_format($product->discount_price, 2) }}</div>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
