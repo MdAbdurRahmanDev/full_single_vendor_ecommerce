@@ -48,5 +48,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('order.show');
     Route::post('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('order.status');
+    Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('order.invoice');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 });

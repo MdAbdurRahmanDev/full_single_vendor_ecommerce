@@ -45,6 +45,15 @@ class OrderController extends Controller
     }
 
     /**
+     * View/Print order invoice.
+     */
+    public function invoice(Order $order)
+    {
+        $order->load(['items.product', 'user']);
+        return view('Backend.invoice', compact('order'));
+    }
+
+    /**
      * Remove the specified order from storage.
      */
     public function destroy(Order $order)

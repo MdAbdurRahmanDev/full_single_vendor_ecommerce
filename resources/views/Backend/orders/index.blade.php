@@ -65,7 +65,7 @@
                         {{ $order->created_at->format('M d, Y') }}
                     </td>
                     <td class="px-6 py-4 text-right space-x-2">
-                        <button type="button" @click="window.location.href='{{ route('admin.order.show', $order->id) }}'" class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase">View</button>
+                        <a href="{{ route('admin.order.show', $order->id) }}" class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase">View</a>
                         <form action="{{ route('admin.order.destroy', $order->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
